@@ -1,21 +1,25 @@
 import os
+from random import shuffle
 from time import sleep
 
 import requests
 
 BASE_URL = "http://0.0.0.0:5000/"
 
-questions = ["What is your darkest fear?: ", "What’s your biggest regret in life?: ",
-             "What personal trait do you most despise?: "]
+questions = ["What is your biggest irrational fear?", "What's your biggest regret in life?",
+             "What personal trait do you most despise?", "If you died tomorrow, what would you wish you had done?",
+             "What makes you feel uneasy?", "Tell me your biggest supernatural or paranormal fear?"]
+
+shuffle(questions)
 
 
 def clear():
     print("\033[H\033[J")
 
 
-def blink_eye(blink=1):
+def blink_eye(blinks=1):
     clear()
-    os.system("gif-for-cli -l %d blink.gif" % blink)
+    os.system("gif-for-cli -l %d blink.gif" % blinks)
 
 
 def add_sentences(sentences):
@@ -27,15 +31,19 @@ def add_sentences(sentences):
         print(response)
         print(sentences)
     else:
-        print("Thank you %s. Your answers have been submitted" % response.json().get("key").replace(".png", ""))
+        print("Thank you %s. Your answers have been submitted" %
+              response.json().get("key").replace(".png", ""))
     return response
 
 
 def ask_questions():
     answers = list()
-    for question in questions:
+    for question in questions[:len(questions) - 1]:
         blink_eye()
-        answers.append(input(question))
+        answer = ""
+        while answer == "":
+            answer = input(question + ": ")
+        answers.append(answer)
     return answers
 
 
@@ -50,6 +58,6 @@ if __name__ == "__main__":
             main()
             sleep(10)
             print("Reseting...")
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, EOFError):
         print("Exiting...")
         exit(0)
