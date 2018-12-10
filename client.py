@@ -1,12 +1,12 @@
 import os
+from time import sleep
 
 import requests
 
 BASE_URL = "http://0.0.0.0:5000/"
 
-QUESTION_1 = "What is your darkest fear?: "
-QUESTION_2 = "What personal trait do you most admire??: "
-QUESTION_3 = "What personal trait do you most despise???: "
+questions = ["What is your darkest fear?: ", "What’s your biggest regret in life?: ",
+             "What personal trait do you most despise?: "]
 
 
 def clear():
@@ -26,17 +26,17 @@ def add_sentences(sentences):
         print("Failed")
         print(response)
         print(sentences)
+    else:
+        print("Thank you %s. Your answers have been submitted" % response.json().get("key").replace(".png", ""))
     return response
 
 
 def ask_questions():
-    blink_eye()
-    answer_1 = input(QUESTION_1)
-    blink_eye()
-    answer_2 = input(QUESTION_2)
-    blink_eye()
-    answer_3 = input(QUESTION_3)
-    return [answer_1, answer_2, answer_3]
+    answers = list()
+    for question in questions:
+        blink_eye()
+        answers.append(input(question))
+    return answers
 
 
 def main():
@@ -48,6 +48,8 @@ if __name__ == "__main__":
     try:
         while True:
             main()
+            sleep(10)
+            print("Reseting...")
     except KeyboardInterrupt:
         print("Exiting...")
         exit(0)
