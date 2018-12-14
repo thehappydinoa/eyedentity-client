@@ -10,7 +10,7 @@ BASE_URL = "http://www.eyedentity.net/"
 number_of_questions = 6
 questions = ["What is your biggest irrational fear?", "What's your biggest regret in life?",
              "What trait do you envy in others?", "Do you consider yourself an introvert or an extrovert?",
-             "What makes you feel uneasy?", "What’s your philosophy in life?",
+             "What makes you feel uneasy?", "What's your philosophy in life?",
              "What makes you feel accomplished?", "What’s an ideal weekend for you?",
              "What is your idea of a perfect vacation?", "What is the weirdest thing about you?",
              "How would your best friend describe you in five words?"]
