@@ -63,6 +63,10 @@ def main():
 
 
 if __name__ == "__main__":
+    status = requests.get(BASE_URL + "/status")
+    if not status.text == "OK":
+        print("Can't access " + BASE_URL)
+        exit(1)
     try:
         while True:
             main()
