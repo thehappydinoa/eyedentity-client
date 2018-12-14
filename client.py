@@ -32,6 +32,7 @@ def add_sentences(sentences):
     payload = {"sentences": sentences}
     response = requests.post(BASE_URL + "/add_sentences", json=payload)
     if not response.status_code == requests.codes.ok:
+        gif("error.gif")
         print("Failed")
         print(response)
         print(sentences)
