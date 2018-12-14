@@ -5,8 +5,8 @@ from time import sleep
 
 import requests
 
-# BASE_URL = "http://0.0.0.0:5000/"
-BASE_URL = "http://www.eyedentity.net/"
+# BASE_URL = "http://0.0.0.0:5000"
+BASE_URL = "http://www.eyedentity.net"
 number_of_questions = 6
 questions = ["What is your biggest irrational fear?", "What's your biggest regret in life?",
              "What trait do you envy in others?", "Do you consider yourself an introvert or an extrovert?",
@@ -31,7 +31,7 @@ def gif(file, loops=1):
 def add_sentences(sentences):
     print("Submitting")
     payload = {"sentences": sentences}
-    response = requests.post(BASE_URL + "add_sentences", json=payload)
+    response = requests.post(BASE_URL + "/add_sentences", json=payload)
     if not response.status_code == requests.codes.ok:
         print("Failed")
         print(response)
