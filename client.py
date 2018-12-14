@@ -55,17 +55,24 @@ def ask_questions():
     return answers
 
 
+def check_domain(domain=BASE_URL):
+    status = requests.get(BASE_URL + "/status")
+    return status.text == "OK"
+
+
 def main():
     sentences = ask_questions()
     add_sentences(sentences)
 
 
 if __name__ == "__main__":
-    status = requests.get(BASE_URL + "/status")
-    if not status.text == "OK":
-        gif("error.gif")
-        print("Can't access " + BASE_URL)
-        exit(1)
+    if not check_domain():
+        print("Blocked")
+        BASE_URL = "https://eyedentity.herokuapp.com"
+        if not check_domain():
+            gif("error.gif")
+            print("Can't access " + BASE_URL)
+            exit(1)
     try:
         while True:
             main()
