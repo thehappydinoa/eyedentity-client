@@ -25,11 +25,10 @@ def clear():
 def gif(file, loops=1):
     clear()
     os.system(
-        "gif-for-cli --rows `tput lines` --cols `tput cols` -l %d %s" % (loops, file))
+        "gif-for-cli --display-mode=256fgbg --rows `tput lines` --cols `tput cols` -l %d %s" % (loops, file))
 
 
 def add_sentences(sentences):
-    print("Submitting")
     payload = {"sentences": sentences}
     response = requests.post(BASE_URL + "/add_sentences", json=payload)
     if not response.status_code == requests.codes.ok:
@@ -38,7 +37,6 @@ def add_sentences(sentences):
         print(sentences)
     else:
         gif("bars.gif", loops=6)
-        clear()
         sleep(2)
         gif("thank-you.gif", loops=10)
         print("Thank you %s. Checkout www.eyedentity.net and find your results." %
@@ -53,7 +51,6 @@ def ask_questions():
         while answer == "":
             answer = input(question + ": ").strip()
         answers.append(answer)
-    gif("moon.gif")
     return answers
 
 
@@ -65,6 +62,7 @@ def main():
 if __name__ == "__main__":
     status = requests.get(BASE_URL + "/status")
     if not status.text == "OK":
+        gif("error.gif")
         print("Can't access " + BASE_URL)
         exit(1)
     try:
