@@ -5,6 +5,8 @@ from time import sleep
 
 import requests
 
+import qrcode
+
 # BASE_URL = "http://0.0.0.0:5000"
 BASE_URL = "http://www.eyedentity.net"
 number_of_questions = 6
@@ -16,6 +18,9 @@ questions = ["What is your biggest irrational fear?", "What's your biggest regre
              "How would your best friend describe you in five words?"]
 
 shuffle(questions)
+
+url_qr = qrcode.QRCode()
+url_qr.add_data(BASE_URL)
 
 
 def clear():
@@ -38,8 +43,10 @@ def add_sentences(sentences):
         print(sentences)
     else:
         gif("bars.gif", loops=6)
-        sleep(2)
-        gif("thank-you.gif", loops=10)
+        sleep(1)
+        gif("thank-you.gif", loops=2)
+        clear()
+        url_qr.print_ascii()
         print("Thank you %s. Checkout www.eyedentity.net and find your results." %
               response.json().get("key").replace(".png", ""))
 
