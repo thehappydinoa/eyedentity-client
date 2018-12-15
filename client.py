@@ -42,7 +42,7 @@ def add_sentences(sentences):
         print(response)
         print(sentences)
     else:
-        gif("bars.gif", loops=6)
+        gif("bars.gif", loops=4)
         sleep(1)
         gif("thank-you.gif", loops=2)
         clear()
