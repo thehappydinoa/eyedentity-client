@@ -1,5 +1,5 @@
 echo "Copying cache to .cache";
-cp -rp /home/pi/cache/ /home/pi/.cache;
+cp -nrp /home/pi/cache/ /home/pi/.cache;
 cd /home/pi/eyedentity-client/;
 echo "Pulling from GitHub";
 git pull;
