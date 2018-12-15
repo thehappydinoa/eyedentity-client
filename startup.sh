@@ -1,13 +1,13 @@
-echo "Copying cache to .cache"
-cp -nrp /home/pi/cache/ /home/pi/.cache;
+echo "Copying cache to .cache";
+cp -rp /home/pi/cache/ /home/pi/.cache;
 cd /home/pi/eyedentity-client/;
-echo "Pulling from GitHub"
+echo "Pulling from GitHub";
 git pull;
-echo "Updating dependencies"
+echo "Updating dependencies";
 pip3 install -r requirements.txt
-echo "Rendering frames"
+echo "Rendering frames";
 python3 render_frames.py;
-echo "Copying .cache to cache"
+echo "Copying .cache to cache";
 cp -nrp /home/pi/.cache/ /home/pi/cache;
-echo "Starting client.py"
+echo "Starting client.py";
 python3 client.py;
