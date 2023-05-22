@@ -4,6 +4,6 @@ gif-for-cli==1.1.1
 idna==2.7
 Pillow==6.2.0
 qrcode==6.0
-requests==2.20.1
+requests==2.31.0
 urllib3==1.24.2
 x256==0.0.3
